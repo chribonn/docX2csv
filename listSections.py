@@ -18,6 +18,6 @@ def list_sections_in_word_document(file_path):
     return sections
 
 # Example usage
-file_path = 'D:\chrib\Downloads\Cloud_Guide.docx'
+file_path = 'Test.docx'
 sections_list = list_sections_in_word_document(file_path)
 print(sections_list)
