@@ -1,0 +1,28 @@
+<w:body>
+	<w:p
+        <w:pPr>
+			<w:pStyle w:val=~~~Style Name~~~" />
+
+
+			 <w:sectPr
+				   ************** Section Break
+			 <w:sectPr />
+
+		</w:pPr>
+		
+		<w:r 
+            <w:lastRenderedPageBreak/>    <------------------------ increment page number
+			<w:br w:type="page"/>         <------------------------ increment page number
+
+
+			<w:t>~~~Text~~~</w:t>
+			or
+			<w:t xml:space="preserve"></w:t>   = ' '
+		</w:r>
+		
+		
+	</w:p>
+	
+	! After each </w:p> add a new line
+	
+	
