@@ -1,4 +1,33 @@
-import docx
+from docx import Document
+
+docName = "Test.docx"
+
+document = Document(docName)
+
+for para in document.paragraphs:
+    print (para.text)
+    print (para.style.name)
+    print (para.style.type)
+    print (para.contains_page_break)
+
+    
+# for para in document.paragraphs:
+#     for run in para.runs:
+#         print (run.text)
+#         print (run.style)
+#         print (run.contains_page_break)
+
+    
+
+
+
+# for paragraph in document.paragraphs:
+#    print (paragraph.name, paragraph.text)
+
+
+
+
+
 
 def list_sections_in_word_document(file_path):
     """
@@ -17,7 +46,3 @@ def list_sections_in_word_document(file_path):
             sections.append(paragraph.text)
     return sections
 
-# Example usage
-file_path = 'Test.docx'
-sections_list = list_sections_in_word_document(file_path)
-print(sections_list)
