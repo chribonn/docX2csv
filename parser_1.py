@@ -3,26 +3,45 @@ import xml.etree.ElementTree as ET
 
 # params
 fileName = r'.\Test\word\document.xml'
+styles = ('ColumnAStyle', 'ColumnBStyle', 'ColumnCStyle')
 
 #constants
 NS_URI = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
 NW_URI_TAG = '{' + NS_URI + '}'
 
 
-def proc_pPr(branch):
+def proc_pPr(branch, srchStyles):
     # print (branch.tag, branch.attrib)
     name = branch.find(NW_URI_TAG + 'pStyle')
-    if name is not None:
-        style = name.get(NW_URI_TAG + 'val')
-    else:
+    if name is None:
         style = None
+    else:
+        style = name.get(NW_URI_TAG + 'val')
+        # Process only if this is a style we are interested in
+        if style not in srchStyles:
+            style = None
         
     return style
+
+
+
+def proc_r(branch):
+    name = branch.find(NW_URI_TAG + 't')
+    text = '' if name is None else name.text
+    
+    # if text is null check for the xml:space="preserve" in which case add a space
+    if text == '' or text is None:
+        if name.get('{http://www.w3.org/XML/1998/namespace}space') == "preserve":
+            text = ' '
+
+    return '' if text is None else text
 
 
 tree = ET.parse(fileName)
 
 root = tree.getroot()
+page = section = line = 1
+csvList = []
 
 
 ET.register_namespace("w", NS_URI)
@@ -31,10 +50,27 @@ ns = {"w": NS_URI}
 
 for x in root.findall('.//w:p', ns):
     # print (x)
+    text = style = ''
     for y in x:
         if y.tag == NW_URI_TAG + 'pPr':
-            result = proc_pPr(y) or (None)
-            if result is not None:
-                print (result)
+            style = proc_pPr(y, styles) or (None)
+            if style is None:
+                continue
+        elif y.tag == NW_URI_TAG + 'r':
+            text += proc_r(y)
+
+    csvList.append(    
+        {
+            "style" : style,
+            "text" : text,
+            "section" : section,
+            "page": page,
+            "line": line
+        })
+        
+    line += 1
+    print (text)
             
 
+
+# %%
