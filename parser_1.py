@@ -71,12 +71,12 @@ for x in root.findall('.//w:p', ns):
             if style is None:
                 break
         elif y.tag == NW_URI_TAG + 'r':
-            text += proc_r_t(y)
-            
             # Search for a rendered page breaks
             if proc_r_lastRenderedPageBreak(y):
                 page += 1
                 line = 1
+
+            text += proc_r_t(y)
 
     if style is not None:
         csvList.append(    
