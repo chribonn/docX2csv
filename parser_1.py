@@ -1,8 +1,11 @@
-# https://docs.python.org/3/library/xml.etree.elementtree.html
 import xml.etree.ElementTree as ET
+import csv
 
 # params
+# needs to be updated with document name docx
 fileName = r'.\Test\word\document.xml'
+
+csvFileName = r'.\output.csv'
 styles = ('ColumnAStyle', 'ColumnBStyle', 'ColumnCStyle')
 
 #constants
@@ -47,6 +50,18 @@ def proc_r_lastRenderedPageBreak(branch):
     
 
 
+def savecsv(csvFile, csvList):
+    csvColumns = ['Style','Text','Section','Page','Line']
+    try:
+        with open(csvFile, 'w') as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=csvColumns)
+            writer.writeheader()
+            for data in csvList:
+                writer.writerow(data)
+    except IOError:
+        print("I/O error")
+
+
 tree = ET.parse(fileName)
 
 root = tree.getroot()
@@ -81,15 +96,16 @@ for x in root.findall('.//w:p', ns):
     if style is not None:
         csvList.append(    
             {
-                "style" : style,
-                "text" : text,
-                "section" : section,
-                "page": page,
-                "line": line
+                "Style" : style,
+                "Text" : text,
+                "Section" : section,
+                "Page": page,
+                "Line": line
             })
-        # Debug Print
-        print (text)
+
         
     line += 1
-    
+
+# https://www.tutorialspoint.com/How-to-save-a-Python-Dictionary-to-CSV-file
 print (csvList)
+savecsv (csvFileName, csvList)
