@@ -10,7 +10,7 @@ NS_URI = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
 NW_URI_TAG = '{' + NS_URI + '}'
 
 
-def proc_pPr(branch, srchStyles):
+def proc_pPr_pStyle(branch, srchStyles):
     # print (branch.tag, branch.attrib)
     name = branch.find(NW_URI_TAG + 'pStyle')
     if name is None:
@@ -24,8 +24,12 @@ def proc_pPr(branch, srchStyles):
     return style
 
 
+def proc_pPr_sectPr(branch):
+    return branch.find(NW_URI_TAG + 'sectPr') is not None
 
-def proc_r(branch):
+
+
+def proc_r_t(branch):
     name = branch.find(NW_URI_TAG + 't')
     text = '' if name is None else name.text
     
@@ -35,6 +39,12 @@ def proc_r(branch):
             text = ' '
 
     return '' if text is None else text
+
+
+
+def proc_r_lastRenderedPageBreak(branch):
+    return branch.find(NW_URI_TAG + 'lastRenderedPageBreak') is not None
+    
 
 
 tree = ET.parse(fileName)
@@ -50,27 +60,36 @@ ns = {"w": NS_URI}
 
 for x in root.findall('.//w:p', ns):
     # print (x)
-    text = style = ''
+    text = ''
+    style = None
     for y in x:
         if y.tag == NW_URI_TAG + 'pPr':
-            style = proc_pPr(y, styles) or (None)
+            # The section check need to be on top because the node may not have a style
+            if proc_pPr_sectPr(y):
+                section += 1
+            style = proc_pPr_pStyle(y, styles) or (None)
             if style is None:
-                continue
+                break
         elif y.tag == NW_URI_TAG + 'r':
-            text += proc_r(y)
+            text += proc_r_t(y)
+            
+            # Search for a rendered page breaks
+            if proc_r_lastRenderedPageBreak(y):
+                page += 1
+                line = 1
 
-    csvList.append(    
-        {
-            "style" : style,
-            "text" : text,
-            "section" : section,
-            "page": page,
-            "line": line
-        })
+    if style is not None:
+        csvList.append(    
+            {
+                "style" : style,
+                "text" : text,
+                "section" : section,
+                "page": page,
+                "line": line
+            })
+        # Debug Print
+        print (text)
         
     line += 1
-    print (text)
-            
-
-
-# %%
+    
+print (csvList)
