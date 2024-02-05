@@ -6,7 +6,7 @@ If this option where to have a place on the office toolbar it would be under the
 
 ### Why?
 
-A use case of *docX2csv* would be to create a sumamry of the RACI matrix, also known as responsibility assignment matrix (RAM) or LRC (linear responsibility chart).  The document contains sections (or pages) describing each action. Each action consists of an action title, description text as well as entries describing who is Responsible, Accountable, Consulted and Informed.  
+A use case of *docX2csv* would be to create a summary of the RACI matrix, also known as responsibility assignment matrix (RAM) or LRC (linear responsibility chart).  The document contains sections (or pages) describing each action. Each action consists of an action title, description text as well as entries describing who is Responsible, Accountable, Consulted and Informed.  
 
 Using *docX2csv* one can generate a summary of the actions and the RACI groups or individuals.
 
@@ -17,7 +17,7 @@ When the source document is updated it would be reprocessed and the resulting ta
 
 ### How
 
-*docX2csv* creates the csv based on Styles in the document. The Title would be associted with a Style to the title (as happens with the TOC option in Word) and would select one or more additional styles that will be crossed reference. For example using the RACI case, each role could have its own style.  The engine automatically adds the section, page and page paragraph number to allow for easy cross referencing.  Being in columinar format, data that is not required can be easily ignored.
+*docX2csv* creates the csv based on Styles in the document. The Title would be associated with a Style to the title (as happens with the TOC option in Word) and would select one or more additional styles that will be crossed reference. For example using the RACI case, each role could have its own style.  The engine automatically adds the section, page and page paragraph number to allow for easy cross referencing.  Being in columnar format, data that is not required can be easily ignored.
 
 
 ### Operation
