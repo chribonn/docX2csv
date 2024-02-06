@@ -22,7 +22,7 @@ When the source document is updated it would be reprocessed and the resulting ta
 
 ### Operation
 
-Text that will be used in the index needs to be properly assigned a Style.  The formatting of the Style does not impact the performance of *docX2csv*. This means that visually different Styles may be visually the same and changing the format of the Style will not alter the operation of *docX2csv*.
+Text that will be used in the index needs to be properly assigned a Style.  The formatting of the Style does not impact the performance of *docX2csv*. This means that different Styles may be visually identical and changing the format of the Style will not alter the operation of *docX2csv*.
 
 ## Conclusion
 

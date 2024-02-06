@@ -1,6 +1,7 @@
 import zipfile
-import tempfile
 import xml.etree.ElementTree as ET
+import csv
+
 
 
 #constants
@@ -15,8 +16,22 @@ def extract_document_xml(docx_file, tmp_dir):
     return tmp_dir
 
 
+
 def get_styles(docx_file):
+    """
+    Returns a list of all the Styles defined in the document. This is used to populate the drop down list
+    Returns the number of styles found. This is used for a progress bar.
+    
+
+    Args:
+        docx_file (file_path): the file that is being processed
+
+    Returns:
+        list: _Styles defined in the document
+        int: the number of style tags found
+    """
     styles = []
+    i = 0
 
     tree = ET.parse(docx_file)
     root = tree.getroot()
@@ -25,17 +40,78 @@ def get_styles(docx_file):
     ns = {"w": NS_URI}
 
     for x in root.findall('.//w:pStyle', ns):
+        i += 1
         style = x.get(NW_URI_TAG + 'val')
         if style not in styles:
             styles.append(style)
             
-    return sorted(styles)
+    return sorted(styles), i
 
 
 
-            
-# if __name__ == "__main__":
-#     tmp_dir = tempfile.TemporaryDirectory()
-#     docx_file = "Test.docx"
-#     print (extract_document_xml(docx_file, tmp_dir.name))
+
+def proc_pPr_pStyle(branch, srchStyles):
+    """
+    Returns two parameters:
+        * The matched style or None
+        * A boolean to indicate whether the style tag was found
+
+    Args:
+        branch : The XML branch being analysed)
+        srchStyles (list): The styles being looked for
+
+    Returns:
+        style: The style that was matched
+        styletag_found: Boolean 
+    """
+    # print (branch.tag, branch.attrib)
+    name = branch.find(NW_URI_TAG + 'pStyle')
+    if name is None:
+        style = None
+        styletag_found = False
+    else:
+        styletag_found = True
+        style = name.get(NW_URI_TAG + 'val')
+        # Process only if this is a style we are interested in
+        if style not in srchStyles:
+            style = None
+        
+    return style, styletag_found
+
+
+def proc_pPr_sectPr(branch):
+    return branch.find(NW_URI_TAG + 'sectPr') is not None
+
+
+
+def proc_r_t(branch):
+    name = branch.find(NW_URI_TAG + 't')
+    text = '' if name is None else name.text
     
+    # if text is null check for the xml:space="preserve" in which case add a space
+    if name is not None and (text == '' or text is None):
+        if name.get('{http://www.w3.org/XML/1998/namespace}space') == "preserve":
+            text = ' '
+
+    return '' if text is None else text
+
+
+
+def proc_r_lastRenderedPageBreak(branch):
+    return branch.find(NW_URI_TAG + 'lastRenderedPageBreak') is not None
+    
+
+
+def savecsv(csvFile, csvList):
+    csvColumns = ['Style','StyleText','HeaderStyleText','Section','Page','Line']
+    try:
+        with open(csvFile, 'w') as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=csvColumns)
+            writer.writeheader()
+            for data in csvList:
+                writer.writerow(data)
+    except IOError:
+        print("I/O error")
+
+
+

@@ -1,35 +1,47 @@
-from tkinter import *
-import ttkbootstrap as tb
+import tkinter as tk
+from tkinter import ttk
+from tkinter.messagebox import showinfo
 
-root =tb.Window(themename="superhero")
+root = tk.Tk()
+root.title('Treeview demo')
+root.geometry('620x200')
 
-def clicker():
-    my_label.config(text=f"You clicked on {my_combo.get()}")
-    
-def click_bind(e):
-    my_label.config(text=f"You clicked on {my_combo.get()} !")
-    
- 
-root.title("TTK Bootstrap! Combobox")
-root.geometry('500x350')
+# define columns
+columns = ('first_name', 'last_name', 'email')
 
-my_label = tb.Label(root, text="Hello World!", font=("Helvetica", 18))
-my_label.pack(pady=30)
+tree = ttk.Treeview(root, columns=columns, show='headings')
 
-# Create dropdown options
-days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Satuday", "Sunday"]
+# define headings
+tree.heading('first_name', text='First Name')
+tree.heading('last_name', text='Last Name')
+tree.heading('email', text='Email')
 
-my_combo = tb.Combobox(root, bootstyle="success", values=days)
-my_combo.pack(pady=30)
+# generate sample data
+contacts = []
+for n in range(1, 100):
+    contacts.append((f'first {n}', f'last {n}', f'email{n}@example.com'))
 
-#set combo  default
-my_combo.current(0)
+# add data to the treeview
+for contact in contacts:
+    tree.insert('', tk.END, values=contact)
 
-# Create button
-mybutton = tb.Button(root, text="Click Me!", command=clicker, bootstyle="danger")
-mybutton.pack(pady=20)
 
-# Bind the combobox
-my_combo.bind("<<ComboboxSelected>>", click_bind)
+def item_selected(event):
+    for selected_item in tree.selection():
+        item = tree.item(selected_item)
+        record = item['values']
+        # show a message
+        showinfo(title='Information', message=','.join(record))
 
+
+tree.bind('<<TreeviewSelect>>', item_selected)
+
+tree.grid(row=0, column=0, sticky='nsew')
+
+# add a scrollbar
+scrollbar = ttk.Scrollbar(root, orient=tk.VERTICAL, command=tree.yview)
+tree.configure(yscroll=scrollbar.set)
+scrollbar.grid(row=0, column=1, sticky='ns')
+
+# run the app
 root.mainloop()
