@@ -5,6 +5,7 @@ import csv
 
 
 #constants
+VERSION = "0.1"
 NS_URI = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
 NW_URI_TAG = '{' + NS_URI + '}'
 XML_DOC_PATH = 'word/document.xml'
@@ -85,8 +86,12 @@ def proc_pPr_sectPr(branch):
 
 
 def proc_r_t(branch):
-    name = branch.find(NW_URI_TAG + 't')
-    text = '' if name is None else name.text
+    text = ''
+    name = None
+    for y in branch:
+        if y.tag == NW_URI_TAG + 'r':
+            name = y.find(NW_URI_TAG + 't')
+            text += '' if name is None else name.text
     
     # if text is null check for the xml:space="preserve" in which case add a space
     if name is not None and (text == '' or text is None):
@@ -105,7 +110,7 @@ def proc_r_lastRenderedPageBreak(branch):
 def savecsv(csvFile, csvList):
     csvColumns = ['Style','StyleText','HeaderStyleText','Section','Page','Line']
     try:
-        with open(csvFile, 'w') as csvfile:
+        with open(csvFile, 'w', newline='') as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=csvColumns)
             writer.writeheader()
             for data in csvList:

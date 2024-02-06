@@ -33,7 +33,20 @@
     xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml"
     xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape" mc:Ignorable="w14 w15 w16se w16cid w16 w16cex w16sdtdh wp14">
     <w:body>
-        <w:p w14:paraId="62CAFE52" w14:textId="2C5C683A" w:rsidR="007C0046" w:rsidRPr="007C0046" w:rsidRDefault="00872F37" w:rsidP="007C0046">
+        <w:p w14:paraId="6B72A64A" w14:textId="4EB6FFB7" w:rsidR="00C87A75" w:rsidRDefault="00C87A75" w:rsidP="00C87A75">
+            <w:pPr>
+                <w:pStyle w:val="Heading1"/>
+            </w:pPr>
+            <w:r>
+                <w:t>Header 1 - A</w:t>
+            </w:r>
+        </w:p>
+        <w:p w14:paraId="5FDE64FB" w14:textId="77777777" w:rsidR="00C87A75" w:rsidRDefault="00C87A75" w:rsidP="007C0046">
+            <w:pPr>
+                <w:pStyle w:val="ColumnAStyle"/>
+            </w:pPr>
+        </w:p>
+        <w:p w14:paraId="62CAFE52" w14:textId="28625833" w:rsidR="007C0046" w:rsidRPr="007C0046" w:rsidRDefault="00872F37" w:rsidP="007C0046">
             <w:pPr>
                 <w:pStyle w:val="ColumnAStyle"/>
             </w:pPr>
@@ -282,7 +295,7 @@
                 <w:rPr>
                     <w:lang w:val="it-IT"/>
                 </w:rPr>
-                <w:sectPr w:rsidR="00872F37" w:rsidRPr="004826FD">
+                <w:sectPr w:rsidR="00872F37" w:rsidRPr="004826FD" w:rsidSect="0008030D">
                     <w:pgSz w:w="11906" w:h="16838"/>
                     <w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440" w:header="708" w:footer="708" w:gutter="0"/>
                     <w:cols w:space="708"/>
@@ -353,10 +366,22 @@
             </w:r>
         </w:p>
         <w:p w14:paraId="3BA7501F" w14:textId="20128DEF" w:rsidR="00872F37" w:rsidRDefault="00872F37" w:rsidP="00592A17"/>
-        <w:p w14:paraId="7DF7DC26" w14:textId="77777777" w:rsidR="00872F37" w:rsidRDefault="00872F37" w:rsidP="00592A17"/>
+        <w:p w14:paraId="7DF7DC26" w14:textId="6E2CF3CE" w:rsidR="00872F37" w:rsidRDefault="00C87A75" w:rsidP="00C87A75">
+            <w:pPr>
+                <w:pStyle w:val="Heading1"/>
+            </w:pPr>
+            <w:proofErr w:type="spellStart"/>
+            <w:r>
+                <w:t>Headine</w:t>
+            </w:r>
+            <w:proofErr w:type="spellEnd"/>
+            <w:r>
+                <w:t xml:space="preserve"> 1 - #2</w:t>
+            </w:r>
+        </w:p>
         <w:p w14:paraId="7AC5E89D" w14:textId="77777777" w:rsidR="00872F37" w:rsidRDefault="00872F37" w:rsidP="00592A17">
             <w:pPr>
-                <w:sectPr w:rsidR="00872F37">
+                <w:sectPr w:rsidR="00872F37" w:rsidSect="0008030D">
                     <w:pgSz w:w="11906" w:h="16838"/>
                     <w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440" w:header="708" w:footer="708" w:gutter="0"/>
                     <w:cols w:space="708"/>
@@ -497,7 +522,7 @@
                 <w:rPr>
                     <w:noProof/>
                 </w:rPr>
-                <w:sectPr w:rsidR="00592A17" w:rsidSect="00872F37">
+                <w:sectPr w:rsidR="00592A17" w:rsidSect="0008030D">
                     <w:type w:val="continuous"/>
                     <w:pgSz w:w="11906" w:h="16838"/>
                     <w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440" w:header="708" w:footer="708" w:gutter="0"/>
@@ -536,12 +561,11 @@
                 <w:t>Suspendisse dapibus lorem pellentesque magna. Integer nulla.</w:t>
             </w:r>
         </w:p>
-        <w:p w14:paraId="5E148FDB" w14:textId="77777777" w:rsidR="006002C7" w:rsidRPr="004D7930" w:rsidRDefault="006002C7" w:rsidP="00872F37">
+        <w:p w14:paraId="5E148FDB" w14:textId="77777777" w:rsidR="006002C7" w:rsidRPr="00C87A75" w:rsidRDefault="006002C7" w:rsidP="00872F37">
             <w:pPr>
                 <w:pStyle w:val="NoSpacing"/>
                 <w:rPr>
                     <w:noProof/>
-                    <w:lang w:val="it-IT"/>
                 </w:rPr>
             </w:pPr>
             <w:r w:rsidRPr="006002C7">
@@ -551,26 +575,23 @@
                 </w:rPr>
                 <w:t xml:space="preserve">Donec blandit feugiat ligula. Donec hendrerit, felis et imperdiet euismod, purus ipsum pretium metus, in lacinia nulla nisl eget sapien. </w:t>
             </w:r>
-            <w:r w:rsidRPr="004D7930">
+            <w:r w:rsidRPr="00C87A75">
                 <w:rPr>
                     <w:noProof/>
-                    <w:lang w:val="it-IT"/>
                 </w:rPr>
                 <w:t>Donec ut est in lectus consequat consequat.</w:t>
             </w:r>
         </w:p>
-        <w:p w14:paraId="3590FDEF" w14:textId="77777777" w:rsidR="006002C7" w:rsidRPr="004D7930" w:rsidRDefault="006002C7" w:rsidP="00872F37">
+        <w:p w14:paraId="3590FDEF" w14:textId="77777777" w:rsidR="006002C7" w:rsidRPr="00C87A75" w:rsidRDefault="006002C7" w:rsidP="00872F37">
             <w:pPr>
                 <w:pStyle w:val="NoSpacing"/>
                 <w:rPr>
                     <w:noProof/>
-                    <w:lang w:val="it-IT"/>
                 </w:rPr>
             </w:pPr>
-            <w:r w:rsidRPr="004D7930">
+            <w:r w:rsidRPr="00C87A75">
                 <w:rPr>
                     <w:noProof/>
-                    <w:lang w:val="it-IT"/>
                 </w:rPr>
                 <w:t>Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique.</w:t>
             </w:r>
@@ -606,9 +627,10 @@
                     <w:lang w:val="fr-FR"/>
                 </w:rPr>
             </w:pPr>
-            <w:r>
+            <w:r w:rsidRPr="00C87A75">
                 <w:rPr>
                     <w:noProof/>
+                    <w:lang w:val="fr-FR"/>
                 </w:rPr>
                 <w:t xml:space="preserve">Nunc ac magna. Maecenas odio dolor, vulputate vel, auctor ac, accumsan id, felis. </w:t>
             </w:r>
@@ -659,12 +681,11 @@
                 <w:t>Morbi neque. Aliquam erat volutpat. Integer ultrices lobortis eros.</w:t>
             </w:r>
         </w:p>
-        <w:p w14:paraId="357FF4DF" w14:textId="77777777" w:rsidR="006002C7" w:rsidRPr="004D7930" w:rsidRDefault="006002C7" w:rsidP="00872F37">
+        <w:p w14:paraId="357FF4DF" w14:textId="77777777" w:rsidR="006002C7" w:rsidRPr="00C87A75" w:rsidRDefault="006002C7" w:rsidP="00872F37">
             <w:pPr>
                 <w:pStyle w:val="NoSpacing"/>
                 <w:rPr>
                     <w:noProof/>
-                    <w:lang w:val="it-IT"/>
                 </w:rPr>
             </w:pPr>
             <w:r w:rsidRPr="006002C7">
@@ -674,10 +695,9 @@
                 </w:rPr>
                 <w:t xml:space="preserve">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin semper, ante vitae sollicitudin posuere, metus quam iaculis nibh, vitae scelerisque nunc massa eget pede. </w:t>
             </w:r>
-            <w:r w:rsidRPr="004D7930">
+            <w:r w:rsidRPr="00C87A75">
                 <w:rPr>
                     <w:noProof/>
-                    <w:lang w:val="it-IT"/>
                 </w:rPr>
                 <w:t>Sed velit urna, interdum vel, ultricies vel, faucibus at, quam.</w:t>
             </w:r>
@@ -1289,12 +1309,11 @@
                 <w:t>Vivamus a tellus.</w:t>
             </w:r>
         </w:p>
-        <w:p w14:paraId="00C2B6CD" w14:textId="6A93CF84" w:rsidR="006002C7" w:rsidRPr="004D7930" w:rsidRDefault="006002C7" w:rsidP="00872F37">
+        <w:p w14:paraId="00C2B6CD" w14:textId="6A93CF84" w:rsidR="006002C7" w:rsidRPr="00C87A75" w:rsidRDefault="006002C7" w:rsidP="00872F37">
             <w:pPr>
                 <w:pStyle w:val="NoSpacing"/>
                 <w:rPr>
                     <w:noProof/>
-                    <w:lang w:val="it-IT"/>
                 </w:rPr>
             </w:pPr>
             <w:r w:rsidRPr="004D7930">
@@ -1367,47 +1386,43 @@
                 </w:rPr>
                 <w:t xml:space="preserve">Donec blandit feugiat ligula. </w:t>
             </w:r>
-            <w:r w:rsidRPr="004D7930">
+            <w:r w:rsidRPr="00C87A75">
                 <w:rPr>
                     <w:noProof/>
-                    <w:lang w:val="it-IT"/>
                 </w:rPr>
                 <w:t xml:space="preserve">Donec hendrerit, felis et imperdiet euismod, purus ipsum pretium </w:t>
             </w:r>
-            <w:r w:rsidR="00593AB0" w:rsidRPr="004D7930">
+            <w:r w:rsidR="00593AB0" w:rsidRPr="00C87A75">
                 <w:rPr>
                     <w:noProof/>
-                    <w:lang w:val="it-IT"/>
                 </w:rPr>
                 <w:t xml:space="preserve"></w:t>
             </w:r>
-            <w:r w:rsidRPr="004D7930">
+            <w:r w:rsidRPr="00C87A75">
                 <w:rPr>
                     <w:noProof/>
-                    <w:lang w:val="it-IT"/>
                 </w:rPr>
                 <w:t>etus, in lacinia nulla nisl eget sapien. Donec ut est in lectus consequat consequat.</w:t>
             </w:r>
-            <w:r w:rsidR="00593AB0" w:rsidRPr="004D7930">
+            <w:r w:rsidR="00593AB0" w:rsidRPr="00C87A75">
                 <w:rPr>
                     <w:noProof/>
-                    <w:lang w:val="it-IT"/>
                 </w:rPr>
                 <w:t xml:space="preserve"></w:t>
             </w:r>
-            <w:r w:rsidRPr="004D7930">
+            <w:r w:rsidRPr="00C87A75">
                 <w:rPr>
                     <w:noProof/>
-                    <w:lang w:val="it-IT"/>
                 </w:rPr>
                 <w:t>Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique.</w:t>
             </w:r>
         </w:p>
-        <w:p w14:paraId="7529F41D" w14:textId="2F2C330E" w:rsidR="007C0046" w:rsidRDefault="006002C7" w:rsidP="00872F37">
+        <w:p w14:paraId="7529F41D" w14:textId="2F2C330E" w:rsidR="007C0046" w:rsidRPr="00C87A75" w:rsidRDefault="006002C7" w:rsidP="00872F37">
             <w:pPr>
                 <w:pStyle w:val="NoSpacing"/>
                 <w:rPr>
                     <w:noProof/>
+                    <w:lang w:val="fr-FR"/>
                 </w:rPr>
             </w:pPr>
             <w:r w:rsidRPr="006002C7">
@@ -1431,205 +1446,233 @@
                 </w:rPr>
                 <w:t xml:space="preserve"></w:t>
             </w:r>
-            <w:r>
+            <w:r w:rsidRPr="00C87A75">
                 <w:rPr>
                     <w:noProof/>
+                    <w:lang w:val="fr-FR"/>
                 </w:rPr>
                 <w:t>Nunc ac magna. Maecenas odio dolor, vulputate vel, auctor ac, accumsan id, felis. Pellentesque cursus sagittis felis.</w:t>
             </w:r>
         </w:p>
-        <w:p w14:paraId="4DAF7C79" w14:textId="6047065F" w:rsidR="004D7930" w:rsidRDefault="004D7930" w:rsidP="00872F37">
+        <w:p w14:paraId="4DAF7C79" w14:textId="6047065F" w:rsidR="004D7930" w:rsidRPr="00C87A75" w:rsidRDefault="004D7930" w:rsidP="00872F37">
             <w:pPr>
                 <w:pStyle w:val="NoSpacing"/>
                 <w:rPr>
                     <w:noProof/>
+                    <w:lang w:val="fr-FR"/>
                 </w:rPr>
             </w:pPr>
         </w:p>
-        <w:p w14:paraId="1FCC513E" w14:textId="7C556C1F" w:rsidR="004D7930" w:rsidRDefault="004D7930" w:rsidP="00872F37">
+        <w:p w14:paraId="1FCC513E" w14:textId="7C556C1F" w:rsidR="004D7930" w:rsidRPr="00C87A75" w:rsidRDefault="004D7930" w:rsidP="00872F37">
             <w:pPr>
                 <w:pStyle w:val="NoSpacing"/>
                 <w:rPr>
                     <w:noProof/>
+                    <w:lang w:val="fr-FR"/>
                 </w:rPr>
             </w:pPr>
         </w:p>
-        <w:p w14:paraId="7421CEBB" w14:textId="5004C44F" w:rsidR="004D7930" w:rsidRDefault="004D7930" w:rsidP="00872F37">
+        <w:p w14:paraId="7421CEBB" w14:textId="5004C44F" w:rsidR="004D7930" w:rsidRPr="00C87A75" w:rsidRDefault="004D7930" w:rsidP="00872F37">
             <w:pPr>
                 <w:pStyle w:val="NoSpacing"/>
                 <w:rPr>
                     <w:noProof/>
+                    <w:lang w:val="fr-FR"/>
                 </w:rPr>
             </w:pPr>
         </w:p>
-        <w:p w14:paraId="61EBE596" w14:textId="31D391FF" w:rsidR="004D7930" w:rsidRDefault="004D7930" w:rsidP="00872F37">
+        <w:p w14:paraId="61EBE596" w14:textId="31D391FF" w:rsidR="004D7930" w:rsidRPr="00C87A75" w:rsidRDefault="004D7930" w:rsidP="00872F37">
             <w:pPr>
                 <w:pStyle w:val="NoSpacing"/>
                 <w:rPr>
                     <w:noProof/>
+                    <w:lang w:val="fr-FR"/>
                 </w:rPr>
             </w:pPr>
         </w:p>
-        <w:p w14:paraId="0B488063" w14:textId="1DA9521E" w:rsidR="004D7930" w:rsidRDefault="004D7930" w:rsidP="004D7930">
+        <w:p w14:paraId="0B488063" w14:textId="1DA9521E" w:rsidR="004D7930" w:rsidRPr="00C87A75" w:rsidRDefault="004D7930" w:rsidP="004D7930">
             <w:pPr>
                 <w:rPr>
                     <w:noProof/>
+                    <w:lang w:val="fr-FR"/>
                 </w:rPr>
             </w:pPr>
-            <w:r>
+            <w:r w:rsidRPr="00C87A75">
                 <w:rPr>
                     <w:noProof/>
+                    <w:lang w:val="fr-FR"/>
                 </w:rPr>
                 <w:br/>
             </w:r>
-            <w:r>
+            <w:r w:rsidRPr="00C87A75">
                 <w:rPr>
                     <w:noProof/>
+                    <w:lang w:val="fr-FR"/>
                 </w:rPr>
                 <w:br/>
             </w:r>
-            <w:r>
+            <w:r w:rsidRPr="00C87A75">
                 <w:rPr>
                     <w:noProof/>
+                    <w:lang w:val="fr-FR"/>
                 </w:rPr>
                 <w:br/>
             </w:r>
-            <w:r>
+            <w:r w:rsidRPr="00C87A75">
                 <w:rPr>
                     <w:noProof/>
+                    <w:lang w:val="fr-FR"/>
                 </w:rPr>
                 <w:br/>
             </w:r>
-            <w:r>
+            <w:r w:rsidRPr="00C87A75">
                 <w:rPr>
                     <w:noProof/>
+                    <w:lang w:val="fr-FR"/>
                 </w:rPr>
                 <w:br/>
             </w:r>
-            <w:r>
+            <w:r w:rsidRPr="00C87A75">
                 <w:rPr>
                     <w:noProof/>
+                    <w:lang w:val="fr-FR"/>
                 </w:rPr>
                 <w:br/>
             </w:r>
-            <w:r>
+            <w:r w:rsidRPr="00C87A75">
                 <w:rPr>
                     <w:noProof/>
+                    <w:lang w:val="fr-FR"/>
                 </w:rPr>
                 <w:lastRenderedPageBreak/>
                 <w:br/>
             </w:r>
         </w:p>
-        <w:p w14:paraId="577DB5C0" w14:textId="77777777" w:rsidR="007C0046" w:rsidRDefault="007C0046">
+        <w:p w14:paraId="577DB5C0" w14:textId="77777777" w:rsidR="007C0046" w:rsidRPr="00C87A75" w:rsidRDefault="007C0046">
             <w:pPr>
                 <w:rPr>
                     <w:noProof/>
+                    <w:lang w:val="fr-FR"/>
                 </w:rPr>
             </w:pPr>
-            <w:r>
+            <w:r w:rsidRPr="00C87A75">
                 <w:rPr>
                     <w:noProof/>
+                    <w:lang w:val="fr-FR"/>
                 </w:rPr>
                 <w:br w:type="page"/>
             </w:r>
         </w:p>
-        <w:p w14:paraId="514621BF" w14:textId="77777777" w:rsidR="006002C7" w:rsidRDefault="006002C7" w:rsidP="00872F37">
+        <w:p w14:paraId="514621BF" w14:textId="77777777" w:rsidR="006002C7" w:rsidRPr="00C87A75" w:rsidRDefault="006002C7" w:rsidP="00872F37">
             <w:pPr>
                 <w:pStyle w:val="NoSpacing"/>
                 <w:rPr>
                     <w:noProof/>
+                    <w:lang w:val="fr-FR"/>
                 </w:rPr>
             </w:pPr>
         </w:p>
-        <w:p w14:paraId="3D7CED1D" w14:textId="77777777" w:rsidR="006002C7" w:rsidRDefault="006002C7" w:rsidP="00872F37">
+        <w:p w14:paraId="3D7CED1D" w14:textId="77777777" w:rsidR="006002C7" w:rsidRPr="00C87A75" w:rsidRDefault="006002C7" w:rsidP="00872F37">
             <w:pPr>
                 <w:pStyle w:val="NoSpacing"/>
                 <w:rPr>
                     <w:noProof/>
+                    <w:lang w:val="fr-FR"/>
                 </w:rPr>
             </w:pPr>
         </w:p>
-        <w:p w14:paraId="1CDE440F" w14:textId="03C00A2A" w:rsidR="006002C7" w:rsidRPr="00C73366" w:rsidRDefault="006002C7" w:rsidP="00C73366">
+        <w:p w14:paraId="1CDE440F" w14:textId="03C00A2A" w:rsidR="006002C7" w:rsidRPr="00C87A75" w:rsidRDefault="006002C7" w:rsidP="00C73366">
             <w:pPr>
                 <w:pStyle w:val="ColumnBStyle"/>
                 <w:rPr>
                     <w:sz w:val="72"/>
                     <w:szCs w:val="72"/>
-                    <w:lang w:val="en-GB"/>
+                    <w:lang w:val="fr-FR"/>
                 </w:rPr>
             </w:pPr>
             <w:proofErr w:type="spellStart"/>
-            <w:r w:rsidRPr="00C73366">
+            <w:proofErr w:type="gramStart"/>
+            <w:r w:rsidRPr="00C87A75">
                 <w:rPr>
                     <w:sz w:val="72"/>
                     <w:szCs w:val="72"/>
-                    <w:lang w:val="en-GB"/>
+                    <w:lang w:val="fr-FR"/>
                 </w:rPr>
                 <w:t>Column</w:t>
             </w:r>
-            <w:r w:rsidR="00C73366" w:rsidRPr="00C73366">
+            <w:r w:rsidR="00C73366" w:rsidRPr="00C87A75">
                 <w:rPr>
                     <w:sz w:val="72"/>
                     <w:szCs w:val="72"/>
-                    <w:lang w:val="en-GB"/>
+                    <w:lang w:val="fr-FR"/>
                 </w:rPr>
                 <w:t>B</w:t>
             </w:r>
-            <w:r w:rsidRPr="00C73366">
+            <w:r w:rsidRPr="00C87A75">
                 <w:rPr>
                     <w:sz w:val="72"/>
                     <w:szCs w:val="72"/>
-                    <w:lang w:val="en-GB"/>
+                    <w:lang w:val="fr-FR"/>
                 </w:rPr>
                 <w:t>Style</w:t>
             </w:r>
             <w:proofErr w:type="spellEnd"/>
-            <w:r w:rsidRPr="00C73366">
+            <w:r w:rsidRPr="00C87A75">
                 <w:rPr>
                     <w:sz w:val="72"/>
                     <w:szCs w:val="72"/>
-                    <w:lang w:val="en-GB"/>
+                    <w:lang w:val="fr-FR"/>
                 </w:rPr>
-                <w:t xml:space="preserve">: </w:t>
+                <w:t>:</w:t>
             </w:r>
-            <w:r w:rsidR="007C0046" w:rsidRPr="00C73366">
+            <w:proofErr w:type="gramEnd"/>
+            <w:r w:rsidRPr="00C87A75">
                 <w:rPr>
                     <w:sz w:val="72"/>
                     <w:szCs w:val="72"/>
-                    <w:lang w:val="en-GB"/>
+                    <w:lang w:val="fr-FR"/>
+                </w:rPr>
+                <w:t xml:space="preserve"></w:t>
+            </w:r>
+            <w:r w:rsidR="007C0046" w:rsidRPr="00C87A75">
+                <w:rPr>
+                    <w:sz w:val="72"/>
+                    <w:szCs w:val="72"/>
+                    <w:lang w:val="fr-FR"/>
                 </w:rPr>
                 <w:t xml:space="preserve"> Section </w:t>
             </w:r>
-            <w:r w:rsidR="00C73366" w:rsidRPr="00C73366">
+            <w:r w:rsidR="00C73366" w:rsidRPr="00C87A75">
                 <w:rPr>
                     <w:sz w:val="72"/>
                     <w:szCs w:val="72"/>
-                    <w:lang w:val="en-GB"/>
+                    <w:lang w:val="fr-FR"/>
                 </w:rPr>
                 <w:t>4</w:t>
             </w:r>
-            <w:r w:rsidR="007C0046" w:rsidRPr="00C73366">
+            <w:r w:rsidR="007C0046" w:rsidRPr="00C87A75">
                 <w:rPr>
                     <w:sz w:val="72"/>
                     <w:szCs w:val="72"/>
-                    <w:lang w:val="en-GB"/>
+                    <w:lang w:val="fr-FR"/>
                 </w:rPr>
                 <w:t xml:space="preserve"> / Page </w:t>
             </w:r>
-            <w:r w:rsidR="00FD7C66">
+            <w:r w:rsidR="00FD7C66" w:rsidRPr="00C87A75">
                 <w:rPr>
                     <w:sz w:val="72"/>
                     <w:szCs w:val="72"/>
-                    <w:lang w:val="en-GB"/>
+                    <w:lang w:val="fr-FR"/>
                 </w:rPr>
                 <w:t>5</w:t>
             </w:r>
         </w:p>
-        <w:p w14:paraId="528D96C7" w14:textId="77777777" w:rsidR="006002C7" w:rsidRPr="007C0046" w:rsidRDefault="006002C7" w:rsidP="00872F37">
+        <w:p w14:paraId="528D96C7" w14:textId="77777777" w:rsidR="006002C7" w:rsidRPr="00C87A75" w:rsidRDefault="006002C7" w:rsidP="00872F37">
             <w:pPr>
                 <w:pStyle w:val="NoSpacing"/>
                 <w:rPr>
                     <w:noProof/>
+                    <w:lang w:val="fr-FR"/>
                 </w:rPr>
             </w:pPr>
         </w:p>
@@ -1747,7 +1790,7 @@
                 <w:t>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</w:t>
             </w:r>
         </w:p>
-        <w:p w14:paraId="3D7EE6D3" w14:textId="77777777" w:rsidR="006002C7" w:rsidRPr="004D7930" w:rsidRDefault="006002C7" w:rsidP="00872F37">
+        <w:p w14:paraId="3D7EE6D3" w14:textId="77777777" w:rsidR="006002C7" w:rsidRDefault="006002C7" w:rsidP="00872F37">
             <w:pPr>
                 <w:pStyle w:val="NoSpacing"/>
                 <w:rPr>
@@ -1755,7 +1798,29 @@
                 </w:rPr>
             </w:pPr>
         </w:p>
-        <w:sectPr w:rsidR="006002C7" w:rsidRPr="004D7930" w:rsidSect="00872F37">
+        <w:p w14:paraId="1ED6BB0E" w14:textId="77777777" w:rsidR="00C87A75" w:rsidRDefault="00C87A75" w:rsidP="00872F37">
+            <w:pPr>
+                <w:pStyle w:val="NoSpacing"/>
+                <w:rPr>
+                    <w:lang w:val="fr-FR"/>
+                </w:rPr>
+            </w:pPr>
+        </w:p>
+        <w:p w14:paraId="68BC8F17" w14:textId="6D2CF651" w:rsidR="00C87A75" w:rsidRPr="004D7930" w:rsidRDefault="00C87A75" w:rsidP="00C87A75">
+            <w:pPr>
+                <w:pStyle w:val="Heading1"/>
+                <w:rPr>
+                    <w:lang w:val="fr-FR"/>
+                </w:rPr>
+            </w:pPr>
+            <w:r>
+                <w:rPr>
+                    <w:lang w:val="fr-FR"/>
+                </w:rPr>
+                <w:t>Headline 1#3</w:t>
+            </w:r>
+        </w:p>
+        <w:sectPr w:rsidR="00C87A75" w:rsidRPr="004D7930" w:rsidSect="0008030D">
             <w:type w:val="continuous"/>
             <w:pgSz w:w="11906" w:h="16838"/>
             <w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440" w:header="708" w:footer="708" w:gutter="0"/>

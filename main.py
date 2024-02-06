@@ -19,8 +19,9 @@ class UIScreen(tb.Frame):
         self.filename = tb.StringVar()
         self.xmlfile = ''
         self.csv_fl = tb.StringVar()
+        self.hdr_reset_on = tb.StringVar()
         self.cnt_style_tags = 0
-        self.header_style = ''
+        self.header_style = tb.StringVar()
         self.toast = ToastNotification(
             title='doc2Xcsv',
             message='Processing completed',
@@ -34,29 +35,36 @@ class UIScreen(tb.Frame):
         style = tb.Style()
         
         #row 0
-        file_entry = tb.Entry(self, textvariable=self.filename, font=('Arial', 10), state=READONLY)
-        file_entry.grid(row=0, column=0, columnspan=3, padx=20, pady=20, sticky="we")
+        file_entry = tb.Entry(self, textvariable=self.filename, font=('Arial', 10), state=READONLY, width="60")
+        file_entry.grid(row=0, column=0, columnspan=3, padx=20, pady=20, sticky="w")
 
         browse_btn = tb.Button(self, text="Browse", command=self.open_file)
-        browse_btn.grid(row=0, column=4, padx=20, pady=20, sticky="e")
+        browse_btn.grid(row=0, column=4, padx=10, pady=20, sticky="w")
         
         #row 1
         # The Styles that will be searched within the document
         crossref_label = tb.Label(self, text="CrossRef Styles")
-        crossref_label.grid(row=1, column=0, padx=20, pady=20, sticky="w")
+        crossref_label.grid(row=1, column=0, columnspan=1, padx=20, pady=20, sticky="w")
 
         self.crossref_scrollbar = tb.Scrollbar(self)
         self.crossref_treev = tb.Treeview(self, columns=('Style'), show='', yscrollcommand=self.crossref_scrollbar.set)
-      
-        self.crossref_treev.grid(row=1, column=1, columnspan=3, padx=30, pady=20, sticky="e")
+        self.crossref_treev.grid(row=1, column=1, columnspan=3, padx=10, pady=20, sticky="w")
 
         #row 2
         # Optional Style that will be incorporated into the text
         text_label = tb.Label(self, text="Header Style")
-        text_label.grid(row=2, column=0, padx=20, pady=20, sticky="w")
+        text_label.grid(row=2, column=0, padx=10, pady=20, sticky="w")
 
-        self.text_combo = tb.Combobox(self, values=self.header_style)
-        self.text_combo.grid(row=2, column=1, padx=30, pady=20, sticky="e")
+        self.hdr_styl_combo = tb.Combobox(self, textvariable=self.header_style, state=READONLY)
+        self.hdr_styl_combo.grid(row=2, column=1, padx=10, pady=20, sticky="w")
+
+        # Optional Style that will be incorporated into the text
+        text_label2 = tb.Label(self, text="Reset on")
+        text_label2.grid(row=2, column=2, padx=20, pady=20, sticky="w")
+
+        self.hdr_reset_combo = tb.Combobox(self, textvariable=self.hdr_reset_on, values=('Section', 'Page'), state=READONLY)
+        self.hdr_reset_combo.current(0)
+        self.hdr_reset_combo.grid(row=2, column=3, padx=10, pady=20, sticky="w")
 
         #row 3
         # Location of the output file
@@ -64,12 +72,12 @@ class UIScreen(tb.Frame):
         csv_fl_label.grid(row=3, column=0, padx=20, pady=20, sticky="w")
 
         # Location of the output file
-        csv_fl_entry = tb.Entry(self, textvariable=self.csv_fl, font=('Arial', 10), state=READONLY)
-        csv_fl_entry.grid(row=3, column=1, padx=20, pady=20, sticky="w")
+        csv_fl_entry = tb.Entry(self, textvariable=self.csv_fl, font=('Arial', 10), state=READONLY, width="60")
+        csv_fl_entry.grid(row=3, column=1, columnspan=3, padx=20, pady=20, sticky="w")
 
         #row 4
-        self.browse_btn = tb.Button(self, text="Run", command=self.process_file, state=DISABLED)
-        self.browse_btn.grid(row=4, column=1, padx=20, pady=20, sticky="we")
+        self.browse_btn = tb.Button(self, text="Run", command=self.process_file, state=DISABLED, width="60")
+        self.browse_btn.grid(row=4, column=0, columnspan=3, padx=10, pady=20, sticky="we")
 
 
     def open_file(self):
@@ -92,8 +100,7 @@ class UIScreen(tb.Frame):
             self.crossref_treev.insert('', tb.END, values=(style))
         
         # populate the text_combo
-        self.text_combo['values'] = xml_styles
-        self.header_styles = xml_styles
+        self.hdr_styl_combo['values'] = xml_styles
 
         # populate the text box
         self.filename.set(docX_file)
@@ -125,6 +132,8 @@ class UIScreen(tb.Frame):
         root = tree.getroot()
         page = section = line = 1
         style_cnt = 0
+        header_style = () + (self.header_style.get() ,)
+        header_style_text = ''
         csvList = []
 
 
@@ -134,21 +143,23 @@ class UIScreen(tb.Frame):
 
         for x in root.findall('.//w:p', ns):
             # print (x)
-            style_text = header_style_text = ''
+            style_text = ''
             style = None
             for y in x:
                 if y.tag == docX2csv.NW_URI_TAG + 'pPr':
                     # The section check need to be on top because the node may not have a style
                     if docX2csv.proc_pPr_sectPr(y):
                         section += 1
+                        if self.hdr_reset_on.get() == 'Section':
+                            header_style_text = ''
                     
                     # If this is a Header Style is defined then extract text related to it
-                    if self.header_style != '':
-                        style, styletag_found = docX2csv.proc_pPr_pStyle(y, list(self.header_style)) or (None, False)
+                    if self.header_style.get() != '':
+                        style, styletag_found = docX2csv.proc_pPr_pStyle(y, header_style) or (None, False)
                         if style is not None:
                             if header_style_text != '':
                                 header_style_text += '\n' 
-                            header_style_text += docX2csv.proc_r_t(y)
+                            header_style_text += docX2csv.proc_r_t(x)
 
                     # Process Cross Reference Styles
                     style, styletag_found = docX2csv.proc_pPr_pStyle(y, crossref_items) or (None, False)
@@ -158,12 +169,16 @@ class UIScreen(tb.Frame):
                         self.update_progressbar(style_cnt)
                     if style is None:
                         break
-                    style_text += docX2csv.proc_r_t(y)
+                    else:
+                        style_text += docX2csv.proc_r_t(x)
                 elif y.tag == docX2csv.NW_URI_TAG + 'r':
                     # Search for a rendered page breaks
                     if docX2csv.proc_r_lastRenderedPageBreak(y):
                         page += 1
                         line = 1
+                        if self.hdr_reset_on.get() == 'Page':
+                            header_style_text = ''
+                    
 
 
             if style is not None:
@@ -186,7 +201,7 @@ class UIScreen(tb.Frame):
 
 
 if __name__ == '__main__':
-    app = tb.Window("docX2csv", "sandstone", size=(800,400), resizable=(True, True))
+    app = tb.Window(f'docX2csv - {docX2csv.VERSION}', "sandstone", size=(800,640), resizable=(True, True))
     sf = ScrolledFrame(app, autohide=True)
     sf.pack(fill=BOTH, expand=YES, padx=10, pady=10)
 
