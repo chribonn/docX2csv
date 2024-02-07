@@ -1,7 +1,5 @@
 import zipfile
 import xml.etree.ElementTree as ET
-import csv
-
 
 
 #constants
@@ -103,20 +101,19 @@ def proc_r_t(branch):
 
 
 def proc_r_lastRenderedPageBreak(branch):
-    return branch.find(NW_URI_TAG + 'lastRenderedPageBreak') is not None
+    for y in branch.iter(NW_URI_TAG + 'r'):
+            name = y.find(NW_URI_TAG + 'lastRenderedPageBreak')
+            if name is not None:
+                return True
+    return False
+
+    # for y in branch:
+    #     if y.tag == NW_URI_TAG + 'r':
+    #         name = y.find(NW_URI_TAG + 'lastRenderedPageBreak')
+    #         if name is not None:
+    #              return True
+    # return False
     
-
-
-def savecsv(csvFile, csvList):
-    csvColumns = ['Style','StyleText','HeaderStyleText','Section','Page','Line']
-    try:
-        with open(csvFile, 'w', newline='') as csvfile:
-            writer = csv.DictWriter(csvfile, fieldnames=csvColumns)
-            writer.writeheader()
-            for data in csvList:
-                writer.writerow(data)
-    except IOError:
-        print("I/O error")
 
 
 

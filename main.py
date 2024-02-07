@@ -7,6 +7,8 @@ from ttkbootstrap.toast import ToastNotification
 import xml.etree.ElementTree as ET
 import os.path
 import tempfile
+import csv
+import uuid
 
 import docX2csv
 
@@ -124,6 +126,18 @@ class UIScreen(tb.Frame):
 
 
     def process_file(self):
+        def updcsv(csvList, style, style_text, header_style_text, section, page, line, uuid):
+            csvList.append(
+            {
+                'Style' : style,
+                'StyleText' : style_text,
+                'HeaderStyleText' : header_style_text,
+                'Section' : section,
+                'Page': page,
+                'Line': line,
+                'Linked Ref': uuid
+            })
+        
         # styles that must be searched need to be defined
         if not self.crossref_treev.selection():
             return
@@ -142,8 +156,9 @@ class UIScreen(tb.Frame):
         style_cnt = 0
         header_style = () + (self.header_style.get() ,)
         header_style_text = ''
-        csvList = []
-
+        header_style_dict = {}
+        crossref_style_dict = {}
+    
 
         ET.register_namespace("w", docX2csv.NS_URI)
         ns = {"w": docX2csv.NS_URI}
@@ -153,21 +168,22 @@ class UIScreen(tb.Frame):
             # print (x)
             style_text = ''
             style = None
+            if docX2csv.proc_r_lastRenderedPageBreak(x):
+                page += 1
+                line = 1
+            
             for y in x:
                 if y.tag == docX2csv.NW_URI_TAG + 'pPr':
                     # The section check need to be on top because the node may not have a style
                     if docX2csv.proc_pPr_sectPr(y):
                         section += 1
-                        if self.hdr_reset_on.get() == 'Section':
-                            header_style_text = ''
-                    
-                    # If this is a Header Style is defined then extract text related to it
+
+                    # If this is a Header Style extract text related and file it in the Dictionary
                     if self.header_style.get() != '':
                         style, styletag_found = docX2csv.proc_pPr_pStyle(y, header_style) or (None, False)
                         if style is not None:
-                            if header_style_text != '':
-                                header_style_text += '\n' 
-                            header_style_text += docX2csv.proc_r_t(x)
+                            header_style_dict[uuid.uuid4().node] = (section if self.hdr_reset_on.get() == 'Section' else page, docX2csv.proc_r_t(x))
+                            break
 
                     # Process Cross Reference Styles
                     style, styletag_found = docX2csv.proc_pPr_pStyle(y, crossref_items) or (None, False)
@@ -178,40 +194,53 @@ class UIScreen(tb.Frame):
                     if style is None:
                         break
                     else:
-                        style_text += docX2csv.proc_r_t(x)
-                elif y.tag == docX2csv.NW_URI_TAG + 'r':
-                    # Search for a rendered page breaks
-                    if docX2csv.proc_r_lastRenderedPageBreak(y):
-                        page += 1
-                        line = 1
-                        if self.hdr_reset_on.get() == 'Page':
-                            header_style_text = ''
-                    
-
-
-            if style is not None:
-                csvList.append(    
-                    {
-                        'Style' : style,
-                        'StyleText' : style_text,
-                        'HeaderStyleText' : header_style_text,
-                        'Section' : section,
-                        'Page': page,
-                        'Line': line
-                    })
-
+                        crossref_style_dict[uuid.uuid4().node] = (style, docX2csv.proc_r_t(x), section, page, line)
                 
             line += 1
-        
+
+        csvList = []
+                    
+        for x in crossref_style_dict:
+            style = crossref_style_dict[x][0]
+            style_text = crossref_style_dict[x][1]
+            section = crossref_style_dict[x][2]
+            page = crossref_style_dict[x][3]
+            line = crossref_style_dict[x][4]
+            header_style_text = uuidref = ''
+            
+            # if a match is found with the header data generate a uuid and don't process an empty header
+            if self.header_style.get() != '':
+                for y in header_style_dict:
+                    if header_style_dict[y][0] == (section if self.hdr_reset_on.get() == 'Section' else page):
+                        header_style_text = header_style_dict[y][1]
+                        uuidref = f'{style}{uuid.uuid4().node}' if uuidref == '' else uuidref
+                        updcsv(csvList, style, style_text, header_style_text, section, page, line, uuidref)
+                # if no header record was found still write the style record
+                if header_style_text == '':
+                    updcsv(csvList, style, style_text, header_style_text, section, page, line, uuidref)
+            else:
+                header_style_text = ''
+                updcsv(csvList, style, style_text, header_style_text, section, page, line, uuidref)
+
         csv_flname = self.csv_fl.get()
-        docX2csv.savecsv (csv_flname, csvList)
+        csvColumns = ['Style','StyleText','HeaderStyleText','Section','Page','Line','Linked Ref']
+        try:
+            with open(csv_flname, 'w', newline='') as csvfile:
+                writer = csv.DictWriter(csvfile, fieldnames=csvColumns)
+                writer.writeheader()
+                for data in csvList:
+                    writer.writerow(data)
+        except IOError:
+            print("I/O error")
+
         self.toast.show_toast()
+        app.destroy()
 
 
 if __name__ == '__main__':
     app = tb.Window(f'docX2csv - {docX2csv.VERSION}', "sandstone", size=(800,640), resizable=(True, True))
     sf = ScrolledFrame(app, autohide=True)
     sf.pack(fill=BOTH, expand=YES, padx=10, pady=10)
-
     UIScreen(sf)
     app.mainloop()
+
