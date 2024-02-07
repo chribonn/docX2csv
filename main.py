@@ -35,49 +35,57 @@ class UIScreen(tb.Frame):
         style = tb.Style()
         
         #row 0
-        file_entry = tb.Entry(self, textvariable=self.filename, font=('Arial', 10), state=READONLY, width="60")
-        file_entry.grid(row=0, column=0, columnspan=3, padx=20, pady=20, sticky="w")
+        docXfile_label = tb.Label(self, text="DocX File", width="15")
+        docXfile_label.grid(row=0, column=0, columnspan=1, padx=5, pady=20, sticky="w")
 
-        browse_btn = tb.Button(self, text="Browse", command=self.open_file)
-        browse_btn.grid(row=0, column=4, padx=10, pady=20, sticky="w")
+        file_entry = tb.Entry(self, textvariable=self.filename, font=('Arial', 10), state=READONLY, width="40")
+        file_entry.grid(row=0, column=1, columnspan=2, padx=1, pady=20, sticky="w")
+
+        browse_btn = tb.Button(self, text="Browse", command=self.open_file, width="15")
+        browse_btn.grid(row=0, column=3, columnspan=1, padx=0, pady=20, sticky="e")
         
         #row 1
         # The Styles that will be searched within the document
-        crossref_label = tb.Label(self, text="CrossRef Styles")
-        crossref_label.grid(row=1, column=0, columnspan=1, padx=20, pady=20, sticky="w")
+        crossref_label = tb.Label(self, text="CrossRef Styles", width="15")
+        crossref_label.grid(row=1, column=0, columnspan=1, padx=5, pady=20, sticky="w")
 
         self.crossref_scrollbar = tb.Scrollbar(self)
         self.crossref_treev = tb.Treeview(self, columns=('Style'), show='', yscrollcommand=self.crossref_scrollbar.set)
-        self.crossref_treev.grid(row=1, column=1, columnspan=3, padx=10, pady=20, sticky="w")
+        self.crossref_treev.grid(row=1, column=1, columnspan=2, padx=1, pady=20, sticky="w")
 
         #row 2
         # Optional Style that will be incorporated into the text
-        text_label = tb.Label(self, text="Header Style")
-        text_label.grid(row=2, column=0, padx=10, pady=20, sticky="w")
+        text_label = tb.Label(self, text="Header Style", width="15")
+        text_label.grid(row=2, column=0, columnspan=1, padx=5, pady=20, sticky="w")
 
-        self.hdr_styl_combo = tb.Combobox(self, textvariable=self.header_style, state=READONLY)
-        self.hdr_styl_combo.grid(row=2, column=1, padx=10, pady=20, sticky="w")
+        self.hdr_styl_combo = tb.Combobox(self, textvariable=self.header_style, state=READONLY, width="20")
+        self.hdr_styl_combo.grid(row=2, column=1, columnspan=1, padx=1, pady=20, sticky="w")
 
         # Optional Style that will be incorporated into the text
-        text_label2 = tb.Label(self, text="Reset on")
-        text_label2.grid(row=2, column=2, padx=20, pady=20, sticky="w")
+        text_label2 = tb.Label(self, text="Reset on", width="10")
+        text_label2.grid(row=2, column=2, columnspan=1, padx=20, pady=20, sticky="e")
 
-        self.hdr_reset_combo = tb.Combobox(self, textvariable=self.hdr_reset_on, values=('Section', 'Page'), state=READONLY)
+        self.hdr_reset_combo = tb.Combobox(self, textvariable=self.hdr_reset_on, values=('Section', 'Page'), state=READONLY, width="15")
         self.hdr_reset_combo.current(0)
-        self.hdr_reset_combo.grid(row=2, column=3, padx=10, pady=20, sticky="w")
+        self.hdr_reset_combo.grid(row=2, column=3, padx=0, pady=20, sticky="w")
 
         #row 3
         # Location of the output file
-        csv_fl_label = tb.Label(self, text="Output Filename")
-        csv_fl_label.grid(row=3, column=0, padx=20, pady=20, sticky="w")
+        csv_fl_label = tb.Label(self, text="Output Filename", width="15")
+        csv_fl_label.grid(row=3, column=0, columnspan=1, padx=5, pady=20, sticky="w")
 
         # Location of the output file
-        csv_fl_entry = tb.Entry(self, textvariable=self.csv_fl, font=('Arial', 10), state=READONLY, width="60")
-        csv_fl_entry.grid(row=3, column=1, columnspan=3, padx=20, pady=20, sticky="w")
+        csv_fl_entry = tb.Entry(self, textvariable=self.csv_fl, font=('Arial', 10), state=READONLY, width="55")
+        csv_fl_entry.grid(row=3, column=1, columnspan=3, padx=1, pady=20, sticky="w")
 
         #row 4
-        self.browse_btn = tb.Button(self, text="Run", command=self.process_file, state=DISABLED, width="60")
-        self.browse_btn.grid(row=4, column=0, columnspan=3, padx=10, pady=20, sticky="we")
+        blank2_label = tb.Label(self, text=" ", width="15")
+        blank2_label.grid(row=4, column=1, columnspan=1, padx=5, pady=20, sticky="w")
+
+        self.browse_btn = tb.Button(self, text="Run", command=self.process_file, state=DISABLED, width="40")
+        self.browse_btn.grid(row=4, column=1, columnspan=2, padx=0, pady=20, sticky="we")
+        
+        #row 5 - Add Progress bar
 
 
     def open_file(self):
