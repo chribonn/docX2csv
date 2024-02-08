@@ -4,6 +4,7 @@ from tkinter import ttk
 from ttkbootstrap.scrolled import ScrolledFrame
 from tkinter.filedialog import askopenfilename
 from ttkbootstrap.toast import ToastNotification
+from ttkbootstrap.dialogs import Messagebox
 import xml.etree.ElementTree as ET
 import os.path
 import tempfile
@@ -131,8 +132,8 @@ class UIScreen(tb.Frame):
             csvList.append(
             {
                 'Style' : style,
-                'StyleText' : style_text,
-                'HeaderStyleText' : header_style_text,
+                'Style Text' : style_text,
+                'Header Style Text' : header_style_text,
                 'Section' : section,
                 'Page': page,
                 'Line': line,
@@ -242,7 +243,13 @@ if __name__ == '__main__':
     app = tb.Window(f'docX2csv - {docX2csv_lib.VERSION}', "sandstone", size=(800,640), resizable=(True, True))
     try:
         app.iconbitmap('assets/docX2csv.ico')
-        
+    except:
+        # look for the file with the program
+        try:
+            app.iconbitmap('docX2csv.ico')
+        except:
+            app.iconbitmap('')
+            Messagebox.show_error(title = 'Icon file: docX2csv.ico not found!', message='It should be in the ASSETS folder\nlocated under this exe.')
     sf = ScrolledFrame(app, autohide=True)
     sf.pack(fill=BOTH, expand=YES, padx=10, pady=10)
     UIScreen(sf)
