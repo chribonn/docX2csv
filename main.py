@@ -239,6 +239,7 @@ class UIScreen(tb.Frame):
 
 if __name__ == '__main__':
     app = tb.Window(f'docX2csv - {docX2csv.VERSION}', "sandstone", size=(800,640), resizable=(True, True))
+    app.iconbitmap('assets/docX2csv.ico')
     sf = ScrolledFrame(app, autohide=True)
     sf.pack(fill=BOTH, expand=YES, padx=10, pady=10)
     UIScreen(sf)
