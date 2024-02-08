@@ -180,6 +180,11 @@ class UIScreen(tb.Frame):
                     if docX2csv_lib.proc_pPr_sectPr(y):
                         section += 1
 
+                    # The section brewk is not continuous increment the page
+                    if docX2csv_lib.proc_pPr_sectBr(y):
+                        page += 1
+                        line = 1
+
                     # If this is a Header Style extract text related and file it in the Dictionary
                     if self.header_style.get() != '':
                         style, styletag_found = docX2csv_lib.proc_pPr_pStyle(y, header_style) or (None, False)

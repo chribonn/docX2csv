@@ -81,7 +81,17 @@ def proc_pPr_pStyle(branch, srchStyles):
 def proc_pPr_sectPr(branch):
     return branch.find(NW_URI_TAG + 'sectPr') is not None
 
-
+def proc_pPr_sectBr(branch):
+    section = branch.find(NW_URI_TAG + 'sectPr')
+    if section is None:
+        return False
+    
+    section_cont = section.find(NW_URI_TAG + 'type')
+    if section_cont is not None:
+        return False
+    
+    return True
+        
 
 def proc_r_t(branch):
     text = ''
