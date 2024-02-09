@@ -160,7 +160,11 @@ class UIScreen(tb.Frame):
         header_style_text = ''
         header_style_dict = {}
         crossref_style_dict = {}
-    
+        
+        # Because of a quirk in the docx xml format there can be two page breaks on two adjacent
+        # './/w:p' nodes one related to a style and the other being a <w:lastRenderedPageBreak/>
+        # in this scenario only  count as one page.
+        pagebreak_prior = False
 
         ET.register_namespace("w", docX2csv_lib.NS_URI)
         ns = {"w": docX2csv_lib.NS_URI}
@@ -170,20 +174,21 @@ class UIScreen(tb.Frame):
             # print (x)
             style_text = ''
             style = None
-            if docX2csv_lib.proc_r_lastRenderedPageBreak(x):
-                page += 1
-                line = 1
+            if docX2csv_lib.page_break(x):
+                if not pagebreak_prior:
+                    page += 1
+                    line = 1
+                pagebreak_prior = True
+            else:
+                pagebreak_prior = False
+                
+                    
             
             for y in x:
                 if y.tag == docX2csv_lib.NW_URI_TAG + 'pPr':
                     # The section check need to be on top because the node may not have a style
                     if docX2csv_lib.proc_pPr_sectPr(y):
                         section += 1
-
-                    # The section brewk is not continuous increment the page
-                    if docX2csv_lib.proc_pPr_sectBr(y):
-                        page += 1
-                        line = 1
 
                     # If this is a Header Style extract text related and file it in the Dictionary
                     if self.header_style.get() != '':

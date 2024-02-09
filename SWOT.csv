@@ -1,36 +1,13 @@
-Index,Page,,,,,
-SWOT,1,2,5,6,,
-Opportunities,0,,,,,
-Opportunity (Page 1 / Section 1),0,,,,,
-Strengths,,0,,,,
-Strength (Page 6 / Section 4),,,,,,
-Strengths (Page 2 / Section 2),,0,,,,
-Threats,,0,,,,
-Threats Text (Page 2  / Section 2),,0,,,,
-Weaknesses,0,0,0,,,
-Weakness (Page 1 / Section 1),0,,,,,
-Weakness (Page 2  / Section 1),,0,,,,
-Weakness (Page 5 / Section 3),,,0,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
 Style,Style Text,Header Style Text,Section,Page,Line,Linked Ref
-Opportunities,Opportunity (Page 1 / Section 1),Header 1 (Page 1 / Section 1),1,1,3,Opportunities195317518820605
-Opportunities,Opportunity (Page 1 / Section 1),Header 2 (Page 2 / Section 1),1,1,3,Opportunities195317518820605
-Weaknesses,Weakness (Page 1 / Section 1),Header 1 (Page 1 / Section 1),1,1,8,Weaknesses125310991226134
-Weaknesses,Weakness (Page 1 / Section 1),Header 2 (Page 2 / Section 1),1,1,8,Weaknesses125310991226134
-Weaknesses,Weakness (Page 2  / Section 1),Header 1 (Page 1 / Section 1),1,2,1,Weaknesses195254449828523
-Weaknesses,Weakness (Page 2  / Section 1),Header 2 (Page 2 / Section 1),1,2,1,Weaknesses195254449828523
-Strengths,Strengths (Page 2 / Section 2),Header 3 (Page 3 / Section 2),2,2,11,Strengths94318597188847
-Strengths,Strengths (Page 2 / Section 2),Header 4 (Page 4 / Section 2),2,2,11,Strengths94318597188847
-Threats,Threats Text (Page 2  / Section 2),Header 3 (Page 3 / Section 2),2,2,14,Threats119391098062403
-Threats,Threats Text (Page 2  / Section 2),Header 4 (Page 4 / Section 2),2,2,14,Threats119391098062403
-Weaknesses,Weakness (Page 5 / Section 3),Header 5 (Page 5 / Section 3),3,5,5,Weaknesses112118839087962
+Opportunities,Opportunity (Page 1 / Section 1),Header 1 (Page 1 / Section 1),1,1,3,Opportunities188672341632568
+Opportunities,Opportunity (Page 1 / Section 1),Header 2 (Page 2 / Section 1),1,1,3,Opportunities188672341632568
+Weaknesses,Weakness (Page 1 / Section 1),Header 1 (Page 1 / Section 1),1,1,8,Weaknesses164610139036605
+Weaknesses,Weakness (Page 1 / Section 1),Header 2 (Page 2 / Section 1),1,1,8,Weaknesses164610139036605
+Weaknesses,Weakness (Page 2  / Section 1),Header 1 (Page 1 / Section 1),1,2,1,Weaknesses37075536824047
+Weaknesses,Weakness (Page 2  / Section 1),Header 2 (Page 2 / Section 1),1,2,1,Weaknesses37075536824047
+Strengths,Strengths (Page 2 / Section 2),Header 3 (Page 3 / Section 2),2,2,11,Strengths254261853062449
+Strengths,Strengths (Page 2 / Section 2),Header 4 (Page 4 / Section 2),2,2,11,Strengths254261853062449
+Threats,Threats Text (Page 2  / Section 2),Header 3 (Page 3 / Section 2),2,2,14,Threats27884159846954
+Threats,Threats Text (Page 2  / Section 2),Header 4 (Page 4 / Section 2),2,2,14,Threats27884159846954
+Weaknesses,Weakness (Page 5 / Section 3),Header 5 (Page 5 / Section 3),3,5,5,Weaknesses279297358503738
 Strengths,Strength (Page 6 / Section 4),,4,6,6,

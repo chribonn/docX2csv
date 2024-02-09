@@ -47,8 +47,6 @@ def get_styles(docx_file):
     return sorted(styles), i
 
 
-
-
 def proc_pPr_pStyle(branch, srchStyles):
     """
     Returns two parameters:
@@ -80,17 +78,6 @@ def proc_pPr_pStyle(branch, srchStyles):
 
 def proc_pPr_sectPr(branch):
     return branch.find(NW_URI_TAG + 'sectPr') is not None
-
-def proc_pPr_sectBr(branch):
-    section = branch.find(NW_URI_TAG + 'sectPr')
-    if section is None:
-        return False
-    
-    section_cont = section.find(NW_URI_TAG + 'type')
-    if section_cont is not None:
-        return False
-    
-    return True
         
 
 def proc_r_t(branch):
@@ -109,21 +96,64 @@ def proc_r_t(branch):
     return '' if text is None else text
 
 
-
 def proc_r_lastRenderedPageBreak(branch):
     for y in branch.iter(NW_URI_TAG + 'r'):
-            name = y.find(NW_URI_TAG + 'lastRenderedPageBreak')
-            if name is not None:
-                return True
+        name = y.find(NW_URI_TAG + 'lastRenderedPageBreak')
+        if name is not None:
+            return True
+
     return False
 
-    # for y in branch:
-    #     if y.tag == NW_URI_TAG + 'r':
-    #         name = y.find(NW_URI_TAG + 'lastRenderedPageBreak')
-    #         if name is not None:
-    #              return True
-    # return False
+
+def proc_r_br(branch):
+    for y in branch.iter(NW_URI_TAG + 'r'):
+        name = y.find(NW_URI_TAG + 'br')
+        if name is None:
+            break
+        
+        if name.get('{http://www.w3.org/XML/1998/namespace}type') == "page":
+            return True
+
+    return False
+
+
+def proc_pPr_sectBr(branch):
+    """
+    This module looks fof a section break on the next page. This is identified by the lack of a
+    <w:type w:val="continuous"/>
+
+    Args:
+        branch :  xml node being analysed
+
+    Returns:
+        Boolean : New page or not
+    """
+    sect_pPr = branch.find(NW_URI_TAG + 'pPr')
+    if sect_pPr is None:
+        return False
+
+    sect_sectPr = sect_pPr.find(NW_URI_TAG + 'sectPr')
+    if sect_sectPr is None:
+        return False
+    
+    if sect_sectPr.find(NW_URI_TAG + 'type') is None:
+        return True
+
+    return False
     
 
+def page_break(branch):
+    """
+    Returns whether there is a page break (rendered, manual or section) in this node.
+        there may be multiple tags all indicating a page break but these need to be counted as one.
 
+    Args:
+        branch (xml branch): The <w:p node
 
+    Returns:
+        Boolean: if the node was found
+    """
+    if proc_r_lastRenderedPageBreak(branch) or proc_r_br(branch) or proc_pPr_sectBr(branch):
+        return True
+    
+    return False
