@@ -111,7 +111,7 @@ def proc_r_br(branch):
         if name is None:
             break
         
-        if name.get('{http://www.w3.org/XML/1998/namespace}type') == "page":
+        if name.get(NW_URI_TAG + 'type') == "page":
             return True
 
     return False
