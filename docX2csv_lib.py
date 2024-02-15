@@ -97,12 +97,21 @@ def proc_r_t(branch):
 
 
 def proc_r_lastRenderedPageBreak(branch):
+    """Returns the number of rendered page breaks in the branch
+
+    Args:
+        branch (xml): The xml branch between <w:p tags
+
+    Returns:
+        Int: number found or zero if none have been found
+    """
+    cnt = 0
     for y in branch.iter(NW_URI_TAG + 'r'):
         name = y.find(NW_URI_TAG + 'lastRenderedPageBreak')
         if name is not None:
-            return True
+            cnt += 1
 
-    return False
+    return cnt
 
 
 def proc_r_br(branch):
@@ -143,17 +152,26 @@ def proc_pPr_sectBr(branch):
     
 
 def page_break(branch):
-    """
-    Returns whether there is a page break (rendered, manual or section) in this node.
-        there may be multiple tags all indicating a page break but these need to be counted as one.
+    """Returns the type of page break found or None:
+    '<int>' : 0 if there are no Rendered Page Breaks otherwise the number found
+    'B' : BR
+    'S' : Section reak
 
     Args:
-        branch (xml branch): The <w:p node
+        branch (_type_): The xml branch being analysed
 
     Returns:
-        Boolean: if the node was found
+        Char or None
     """
-    if proc_r_lastRenderedPageBreak(branch) or proc_r_br(branch) or proc_pPr_sectBr(branch):
-        return True
+    lastRenderedPageBreak_cnt = proc_r_lastRenderedPageBreak(branch)
+    if lastRenderedPageBreak_cnt > 0:
+        return ('R', lastRenderedPageBreak_cnt)
+    elif proc_r_br(branch):
+        return ('B', 1)
+    elif proc_pPr_sectBr(branch):
+        return ('S', 1)
+    else:
+        return (None, None)
     
-    return False
+
+    

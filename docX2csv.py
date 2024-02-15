@@ -165,6 +165,7 @@ class UIScreen(tb.Frame):
         # './/w:p' nodes one related to a style and the other being a <w:lastRenderedPageBreak/>
         # in this scenario only  count as one page.
         pagebreak_prior = False
+        lastRenderedPageBreak_prior = False
 
         ET.register_namespace("w", docX2csv_lib.NS_URI)
         ns = {"w": docX2csv_lib.NS_URI}
@@ -174,15 +175,34 @@ class UIScreen(tb.Frame):
             # print (x)
             style_text = ''
             style = None
-            if docX2csv_lib.page_break(x):
-                if not pagebreak_prior:
-                    page += 1
+            
+            # Check for a page break in the xml
+            pgBreak, pgCnt = docX2csv_lib.page_break(x)
+            
+            if pgBreak is None:
+                # If there is no page break reset prior state variables
+                pagebreak_prior = lastRenderedPageBreak_prior = False
+            elif pgBreak == 'R':
+                # Rendered page breaks should be counted if the preceding break was also a rendered break
+                if lastRenderedPageBreak_prior == True:
+                    page += pgCnt
                     line = 1
-                pagebreak_prior = True
-            else:
-                pagebreak_prior = False
-                
+                elif pagebreak_prior == False:
+                    # Treat the rendered page break like any other break
+                    page += pgCnt
+                    line = 1
                     
+                pagebreak_prior = lastRenderedPageBreak_prior = True
+                    
+            elif pagebreak_prior == False:
+                # The hard and section page breaks
+                page += pgCnt
+                line = 1
+                pagebreak_prior = True
+                lastRenderedPageBreak_prior = False
+            else:
+                pagebreak_prior = True
+                lastRenderedPageBreak_prior = False
             
             for y in x:
                 if y.tag == docX2csv_lib.NW_URI_TAG + 'pPr':
