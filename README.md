@@ -38,4 +38,3 @@ Every document that needs to be summarised is a candidate for *docX2csv*. The mo
 
 ## Limitations
 
-https://dadoverflow.com/2022/01/30/parsing-word-documents-with-python/
