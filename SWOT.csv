@@ -1,13 +1,13 @@
-Style,Style Text,Header Style Text,Section,Page,Line,Linked Ref
-Opportunities,Opportunity (Page 1 / Section 1),Header 1 (Page 1 / Section 1),1,1,3,Opportunities88333465311307
-Opportunities,Opportunity (Page 1 / Section 1),Header 2 (Page 2 / Section 1),1,1,3,Opportunities88333465311307
-Weaknesses,Weakness (Page 1 / Section 1),Header 1 (Page 1 / Section 1),1,1,8,Weaknesses4419223440617
-Weaknesses,Weakness (Page 1 / Section 1),Header 2 (Page 2 / Section 1),1,1,8,Weaknesses4419223440617
-Weaknesses,Weakness (Page 2  / Section 1),Header 1 (Page 1 / Section 1),1,2,1,Weaknesses180359985093579
-Weaknesses,Weakness (Page 2  / Section 1),Header 2 (Page 2 / Section 1),1,2,1,Weaknesses180359985093579
-Strengths,Strengths (Page 2 / Section 2),Header 3 (Page 3 / Section 2),2,2,11,Strengths278999993607591
-Strengths,Strengths (Page 2 / Section 2),Header 4 (Page 4 / Section 2),2,2,11,Strengths278999993607591
-Threats,Threats Text (Page 2  / Section 2),Header 3 (Page 3 / Section 2),2,2,14,Threats134848362543463
-Threats,Threats Text (Page 2  / Section 2),Header 4 (Page 4 / Section 2),2,2,14,Threats134848362543463
-Weaknesses,Weakness (Page 5 / Section 3),Header 5 (Page 5 / Section 3),3,5,5,Weaknesses14243648468276
+Style,Style Text,Header Style Text,Section,Page,Paragraph,Linked Ref
+Opportunities,Opportunity (Page 1 / Section 1),Header 1 (Page 1 / Section 1),1,1,3,Opportunities46574410578711
+Opportunities,Opportunity (Page 1 / Section 1),Header 2 (Page 2 / Section 1),1,1,3,Opportunities46574410578711
+Weaknesses,Weakness (Page 1 / Section 1),Header 1 (Page 1 / Section 1),1,1,8,Weaknesses70151084631545
+Weaknesses,Weakness (Page 1 / Section 1),Header 2 (Page 2 / Section 1),1,1,8,Weaknesses70151084631545
+Weaknesses,Weakness (Page 2  / Section 1),Header 1 (Page 1 / Section 1),1,2,1,Weaknesses201499413569192
+Weaknesses,Weakness (Page 2  / Section 1),Header 2 (Page 2 / Section 1),1,2,1,Weaknesses201499413569192
+Strengths,Strengths (Page 2 / Section 2),Header 3 (Page 3 / Section 2),2,2,11,Strengths167733616927633
+Strengths,Strengths (Page 2 / Section 2),Header 4 (Page 4 / Section 2),2,2,11,Strengths167733616927633
+Threats,Threats Text (Page 2  / Section 2),Header 3 (Page 3 / Section 2),2,2,14,Threats281449558858085
+Threats,Threats Text (Page 2  / Section 2),Header 4 (Page 4 / Section 2),2,2,14,Threats281449558858085
+Weaknesses,Weakness (Page 5 / Section 3),Header 5 (Page 5 / Section 3),3,5,5,Weaknesses64775157606172
 Strengths,Strength (Page 6 / Section 4),,4,6,6,

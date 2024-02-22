@@ -128,7 +128,7 @@ class UIScreen(tb.Frame):
 
 
     def process_file(self):
-        def updcsv(csvList, style, style_text, header_style_text, section, page, line, uuid):
+        def updcsv(csvList, style, style_text, header_style_text, section, page, parag, uuid):
             csvList.append(
             {
                 'Style' : style,
@@ -136,7 +136,7 @@ class UIScreen(tb.Frame):
                 'Header Style Text' : header_style_text,
                 'Section' : section,
                 'Page': page,
-                'Line': line,
+                'Paragraph': parag,
                 'Linked Ref': uuid
             })
         
@@ -154,7 +154,7 @@ class UIScreen(tb.Frame):
         tree = ET.parse(self.xmlfile, parser=parser)
 
         root = tree.getroot()
-        page = section = line = 1
+        page = section = parag = 1
         style_cnt = 0
         header_style = () + (self.header_style.get() ,)
         header_style_text = ''
@@ -186,18 +186,18 @@ class UIScreen(tb.Frame):
                 # Rendered page breaks should be counted if the preceding break was also a rendered break
                 if lastRenderedPageBreak_prior == True:
                     page += pgCnt
-                    line = 1
+                    parag = 1
                 elif pagebreak_prior == False:
                     # Treat the rendered page break like any other break
                     page += pgCnt
-                    line = 1
+                    parag = 1
                     
                 pagebreak_prior = lastRenderedPageBreak_prior = True
                     
             elif pagebreak_prior == False:
                 # The hard and section page breaks
                 page += pgCnt
-                line = 1
+                parag = 1
                 pagebreak_prior = True
                 lastRenderedPageBreak_prior = False
             else:
@@ -226,9 +226,9 @@ class UIScreen(tb.Frame):
                     if style is None:
                         break
                     else:
-                        crossref_style_dict[uuid.uuid4().node] = (style, docX2csv_lib.proc_r_t(x), section, page, line)
+                        crossref_style_dict[uuid.uuid4().node] = (style, docX2csv_lib.proc_r_t(x), section, page, parag)
                 
-            line += 1
+            parag += 1
 
         csvList = []
                     
@@ -237,7 +237,7 @@ class UIScreen(tb.Frame):
             style_text = crossref_style_dict[x][1]
             section = crossref_style_dict[x][2]
             page = crossref_style_dict[x][3]
-            line = crossref_style_dict[x][4]
+            parag = crossref_style_dict[x][4]
             header_style_text = uuidref = ''
             
             # if a match is found with the header data generate a uuid and don't process an empty header
@@ -246,16 +246,16 @@ class UIScreen(tb.Frame):
                     if header_style_dict[y][0] == (section if self.hdr_reset_on.get() == 'Section' else page):
                         header_style_text = header_style_dict[y][1]
                         uuidref = f'{style}{uuid.uuid4().node}' if uuidref == '' else uuidref
-                        updcsv(csvList, style, style_text, header_style_text, section, page, line, uuidref)
+                        updcsv(csvList, style, style_text, header_style_text, section, page, parag, uuidref)
                 # if no header record was found still write the style record
                 if header_style_text == '':
-                    updcsv(csvList, style, style_text, header_style_text, section, page, line, uuidref)
+                    updcsv(csvList, style, style_text, header_style_text, section, page, parag, uuidref)
             else:
                 header_style_text = ''
-                updcsv(csvList, style, style_text, header_style_text, section, page, line, uuidref)
+                updcsv(csvList, style, style_text, header_style_text, section, page, parag, uuidref)
 
         csv_flname = self.csv_fl.get()
-        csvColumns = ['Style','Style Text','Header Style Text','Section','Page','Line','Linked Ref']
+        csvColumns = ['Style','Style Text','Header Style Text','Section','Page','Paragraph','Linked Ref']
         try:
             with open(csv_flname, 'w', newline='') as csvfile:
                 writer = csv.DictWriter(csvfile, fieldnames=csvColumns)
