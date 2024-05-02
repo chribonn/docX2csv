@@ -1,4 +1,4 @@
-# docX2csv
+# docX2csv: Microsoft Word Style Summary Creator
 
 
 If this option where to have a place on the office toolbar it would be under the References Menu because, like many of the options there, it indexes a document and generates a summary of that index. Think about this option as the Table of Contents (ToC) option on steroids. 
