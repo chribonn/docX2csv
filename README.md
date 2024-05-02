@@ -8,7 +8,7 @@
 
 *docX2csv* is a tool that takes a docx document and creates an indexed summary of the content. If this were a standard feature of Microsoft Word, you would find it in the references menu next to the Table of Contents (ToC) option under the Reference menu. You can think of *docX2csv* as the table of contents option on steroids.
 
-![](../assets/docX2csv_001_1708519015139_0.png)
+![](assets/docX2csv-001_1707390864512_0.png)
 
 ### How did it come about?
 
@@ -24,7 +24,7 @@ The use cases for this utility are in compliance, project management, security, 
 
 ## Running docX2csv
 
-![](../assets/docX2csv_1707386751208_0.gif)
+![](assets/docX2csv_1707386751208_0.gif)
 
 When you open *docX2csv*, you are presented with a GUI. You click on the **Browse** button and choose the Word document you want to process.
 
@@ -44,9 +44,9 @@ The resulting CSV file can then be opened in a spreadsheet and processed further
 
 ## Case Studies
 
-A sample document called **SWOT.docx** is used to explain the operation of *docX2csv*. A series of walk-throughs will be performed on this document.
+<img align="right" width="196" height="205" src="assets/docX2csv-002_1707392123517_0.png"> 
 
-![](../assets/docX2csv-002_1707392123517_0.png)
+A sample document called **SWOT.docx** is used to explain the operation of *docX2csv*. A series of walk-throughs will be performed on this document.
 
 The document can be download from this link: SWOT.docx. The styles within SWOT.docx contain the Section and Page number they are on. This has been done to enable one to follow along and better understand the output.
 
@@ -58,7 +58,7 @@ In this scenario the Header Style is not selected.
 
 #### Processing Screen
 
-![](../assets/docX2csv-001_1707390864512_0.png)
+![](assets/docX2csv-001_1707390864512_0.png)
 
 #### Generated csv
 
@@ -87,7 +87,7 @@ In this scenario, the CrossRef Styles are Threats and Weaknesses just like Case 
 
 #### Processing Screen
 
-![](../assets/docX2csv-003_1707394954188_0.png)
+![](assets/docX2csv-003_1707394954188_0.png)
 
 #### Generated csv
 
@@ -113,7 +113,7 @@ Weakness of Section 3, Page 5, Paragraph 5 was matched with only one **Header St
 
 Here we search CrossRef StyleStrengths including the Header Style Heading1 and Align on Pages.
 
-![](../assets/docX2csv-004_1707396616010_0.png)
+![](assets/docX2csv-004_1707396616010_0.png)
 
 #### Generated csv
 
@@ -130,7 +130,7 @@ The second match is for the Strengths style on page 6, section 4. As there is no
 
 #### Processing Screen
 
-![](../assets/docX2csv-005_1707400850059_0.png)
+![](assets/docX2csv-005_1707400850059_0.png)
 
 #### Generated csv
 
@@ -151,7 +151,7 @@ The second match is for the Strengths style on page 6, section 4. As there is no
 
 The data can be imported into a tool such as a spreadsheet, where it can be manipulated, filtered, summarised, and analysed further.
 
-![](../assets/docX2csv2-002_1707408488989_0.gif)
+![](assets/docX2csv2-002_1707408488989_0.gif)
 
 ## Know Limitations / FAQ
 
@@ -178,4 +178,4 @@ The most likely reason is that you have a blank paragraph associated with the st
 
 ### Where can I download / fork / comment on the latest version:
 
-https://github.com/chribonn/docX2csv
+[https://github.com/chribonn/docX2csv](https://github.com/chribonn/docX2csv)
